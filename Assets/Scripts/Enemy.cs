@@ -1,4 +1,3 @@
-using System.Threading;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -11,12 +10,11 @@ public class Enemy : MonoBehaviour
     //다음 이동 정보
     public Transform next;
 
-    //private int count = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        point1 = new Vector3(0f, 1.5f, 0f);
+        
     }
 
     // Update is called once per frame
@@ -25,7 +23,7 @@ public class Enemy : MonoBehaviour
         Vector3 dir = point1 - this.transform.position;
         this.transform.Translate(dir.normalized * Time.deltaTime * speed);
 
-        if(dir.magnitude < 0.01)
+        if (dir.magnitude < 0.01)
         {
             Debug.Log("도착!!!");
             //NextPoint();
@@ -37,44 +35,23 @@ public class Enemy : MonoBehaviour
     {
         Node node = next.GetComponent<Node>();
         next = node.GetNext();
-        point1 = next.position;
-
-    }
-
-    /*
-    void NextPoint()
-    {
-        switch (count)
+        if (next == null)
         {
-            case 0:
-                point1 = new Vector3(15f, 1.5f, 0f);
-                count += 1;
-                break;
-            case 1:
-                point1 = new Vector3(15f, 1.5f, 45f);
-                count += 1;
-                break;
-            case 2:
-                point1 = new Vector3(30f, 1.5f, 45f);
-                count += 1;
-                break;
-            case 3:
-                point1 = new Vector3(30f, 1.5f, 0f);
-                count += 1;
-                break;
-            case 4:
-                point1 = new Vector3(45f, 1.5f, 0f);
-                count += 1;
-                break;
-            case 5:
-                point1 = new Vector3(45f, 1.5f, 45f);
-                count += 1;
-                break;
-            case 6:
-                Debug.Log("종점 도착!!!");
-                Destroy(gameObject);
-                break;
+            Debug.Log("종점 도착!!!");
+            Destroy(this.gameObject);
         }
+        else
+        {
+            point1 = next.position;
+        }
+
     }
-    */
+
+
+    public void SetNext(Transform _next)
+    {
+        next = _next;
+        point1 = next.position;
+    }
+
 }

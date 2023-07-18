@@ -358,6 +358,10 @@
 "Assets/Scripts/Enemy.cs"
 "Assets/Scripts/MoveTest.cs"
 "Assets/Scripts/Node.cs"
+"Assets/Scripts/WaveSpawner.cs"
+"Assets/_Sample/PrefabTest/MapTileManager.cs"
+"Assets/_Sample/TransformTest/PlayerMoveTest.cs"
+"Assets/_Sample/TransformTest/TargetTest.cs"
 "Assets/_Sample/UnityTest/Car.cs"
 "Assets/_Sample/UnityTest/UnityEvent.cs"
 -langversion:9.0

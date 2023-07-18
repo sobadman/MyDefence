@@ -63,6 +63,10 @@
     <Compile Include="Assets\_Sample\UnityTest\Car.cs" />
     <Compile Include="Assets\_Sample\UnityTest\UnityEvent.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
+    <Compile Include="Assets\_Sample\TransformTest\TargetTest.cs" />
+    <Compile Include="Assets\_Sample\PrefabTest\MapTileManager.cs" />
+    <Compile Include="Assets\_Sample\TransformTest\PlayerMoveTest.cs" />
+    <Compile Include="Assets\Scripts\WaveSpawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
