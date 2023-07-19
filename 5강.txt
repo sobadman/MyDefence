@@ -1,0 +1,27 @@
+오늘의 목표 : 터렛 슈팅 - 충돌 처리
+
+<오늘의 과제>
+1. 터렛이 1초마다 1발씩 쏘기
+ ->Debug.Log("Shoot!!!!!");
+
+2. 탄환 만들기 (구 0.5x0.5x0.5, bullet)
+1) Fire Point (총구 지점) 만들기 -> 빈 오브젝트 -> 터렛(회전을 관리하는 오브젝트)의 자식오브젝트
+2) 탄환 prefab 만들기
+3) 발사하면 총구(Fire Point) 위치에 탄환 객체 생성하기
+
+3. 탄환 날아가기, 타겟 충돌 체크
+1) 목표지점(타겟 - enemy) 설정
+2) 이동하기(날아가기) - 이동속도 70, Transform target 
+3) 타겟 충돌 체크 (거리를 가지고 타격 판정)
+   - Hit Target!!! (Debug.Log)
+   - 타겟, 탄환 게임오브젝트 kill (Destory)
+
+4. 탄환 타격 이펙트 - 파티클 만들기
+hit target 할때 타격 이펙트 발생시키고. 2초뒤에 파티클 오브젝트 kill;
+
+<스킬>
+1. Instantiate
+2. GetComponent<>
+
+<Sample 씬>
+HitTest
