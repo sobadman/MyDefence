@@ -10,15 +10,24 @@ public class Turret : MonoBehaviour
     public string enemyTag = "Enemy";
 
     float time = 0f;
+    
     public float checkTime = 0.5f;
 
-    private Transform target;
+    float shootTime = 0f;
+
+    public float shoot = 1.0f;
+
+    public Transform target;
 
     public Transform rotatePart;
     public float turnSpeed = 5f;
 
-	// Start is called before the first frame update
-	void Start()
+    public Transform firePoint;
+    public GameObject bulletPrefab;
+
+
+    // Start is called before the first frame update
+    void Start()
 	{
 
 	}
@@ -28,24 +37,22 @@ public class Turret : MonoBehaviour
 	{
         //0.5초마다 target을 찾도록 한다
         time += Time.deltaTime;
-        if(time > checkTime)
+        shootTime += Time.deltaTime;
+        if (time > checkTime)
         {
             FindTarget();
             time = 0;
         }
         if(target != null)
         {
-            Vector3 dir = target.position - rotatePart.position;
-
-            Quaternion lookRotation = Quaternion.LookRotation(dir);
-            Debug.Log(lookRotation);
-
-            Quaternion qRotation = Quaternion.Lerp(rotatePart.rotation, lookRotation, Time.deltaTime * turnSpeed);
-
-            Vector3 eRotation = qRotation.eulerAngles;
-
-            rotatePart.rotation = Quaternion.Euler(0f, eRotation.y, 0f);
+            LockOnTarget();
+            if (shootTime >= shoot)
+            {
+                Shoot();
+                shootTime = 0;
+            }
         }
+        
     }
 
     //게임상의 모든 적들을 찾아 가장 가까운 적을 찾는다
@@ -69,7 +76,6 @@ public class Turret : MonoBehaviour
             }
 
         }
-        Debug.Log($"최소거리는 {MinValue}입니다");
 
         if( nearEnemy != null && MinValue < attackRange)
         {
@@ -81,9 +87,34 @@ public class Turret : MonoBehaviour
         }
     }
 
+    //터렛이 총알 발사하는 함수 - 1초마다 1발씩 쏘기
+    void Shoot()
+    {
+        GameObject bulletGo = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        Destroy(bulletGo, 3f);
+        
+        Bullet bullet = bulletGo.GetComponent<Bullet>();
+        bullet.SetTarget(target);
+    }
+
+    void LockOnTarget()
+    {
+        Vector3 dir = target.position - rotatePart.position;
+
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+
+        Quaternion qRotation = Quaternion.Lerp(rotatePart.rotation, lookRotation, Time.deltaTime * turnSpeed);
+
+        Vector3 eRotation = qRotation.eulerAngles;
+
+        rotatePart.rotation = Quaternion.Euler(0f, eRotation.y, 0f);
+    }
+
 	private void OnDrawGizmosSelected()
 	{
         Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position, attackRange);
 	}
+
+
 }

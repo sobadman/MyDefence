@@ -26,7 +26,7 @@ public class WaveSpawner : MonoBehaviour
 	void Update()
 	{
 		countdown += Time.deltaTime;
-        countdownText.text = (5 - Mathf.FloorToInt(countdown)).ToString();
+        countdownText.text = (spawnTime - Mathf.FloorToInt(countdown)).ToString();
         if (countdown >= spawnTime)
 		{
 			countdown = 0f;

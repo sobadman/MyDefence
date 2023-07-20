@@ -1,0 +1,47 @@
+<오늘의 목표> 타일위에 터렛을 설치하자 - 싱글톤 패턴
+
+<오늘의 과제>
+1. 맵타일위에 마우스가 올라가면 타일의 색이 바뀌도록 한다 - material : color(연두색)
+2. 맵타일위에서 마우스 클릭하면 선택한 타일위에 기본 터렛을 설치한다
+ - Debug.Log("마우스 클릭");
+3. BuildManager - 싱글톤 패턴 구현, 
+ - 타일에 설치되는 터렛 오브젝트를 관리
+ - BuildManager 기본 터렛 프리팹을 가져온다 - 기본 터렛 설치
+
+<필요 스킬>
+1. OnMouseEnter(), OnMouseExit(), OnMouseDown()
+2. GetComponent<>();
+3. 싱글톤 패턴
+
+
+<Sample 씬>
+GameObjectTest
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
