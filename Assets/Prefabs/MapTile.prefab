@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5372864403892215656}
   - component: {fileID: 8672527903257884669}
   - component: {fileID: 3800497451763283227}
+  - component: {fileID: 6552133893682921325}
   m_Layer: 0
   m_Name: MapTile
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5372864403892215656
 MeshFilter:
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e8959b767e9cb024498a5a9415e589f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,3 +106,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6552133893682921325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896020059601360152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1030e46264577064b8bf4e470ea6f58d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverColor: {r: 0.20316765, g: 1, b: 0.18396229, a: 0}
+  hoverMaterial: {fileID: 2100000, guid: f06c69fe66b632a47968f4f336282431, type: 2}
+  turretPrefab: {fileID: 6285998268055966789, guid: cf70aa051d9c7294a96273e8263461db, type: 3}
+  offsetPos: {x: 0, y: 0.5, z: 0}

@@ -1,0 +1,35 @@
+<오늘의 목표> - Input System - 카메라 제어
+카메라의 위치를 이동하여 게임 화면을 원하는 곳으로 이동하여 보자
+
+<오늘의 과제>
+1. A,S,D,W 키값을 받아 맵을 스크롤 시킨다
+
+2. 마우스를 스크린 상하좌우 끝 부분(기준 폭: 10)에 가져가면 맵을 스크롤 시킨다
+(0, 0) ~ (Screen.width, Screen.height)
+
+3. 마우스 휠을 스크롤하면 화면이 줌인 줌아웃 한다
+ (pos.y : 10f 이상, 80f 이하)
+ min:10f,  max: 80f
+
+4. esc key를 한번 누르면 카메라 이동을 못하게 막는다
+   esc key를 다시 한번 누르면 카메라 이동을 하게 한다
+
+<필요 스킬> - Old Input System
+1. InputManager - 메뉴얼
+2. Input - API
+3. New Input System 
+
+<Sample 씬>
+InputTest
+NewInput 프로젝트
+
+
+
+
+
+
+
+
+
+
+
