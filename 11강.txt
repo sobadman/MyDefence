@@ -1,0 +1,33 @@
+<오늘의 목표> - Canvas
+게임 UI(USER INTERFACE)를 구성해보자
+
+<오늘의 과제>
+1. 맵타일의 빨간색 바꾸기 - 잔고 증명
+   빌드할 터렛의 가격보다 가지고 있는 돈이 적으면 맵타일의 빨간색 바꾸기
+
+2. countdown,  money - 화면 하단에 UI 구성,  데이터 연결
+
+3. Turret cost - 터렛 구매 버튼에 가격 표시
+
+4  터렛 건설시 파티클 효과 추가
+  - 터렛 건설한 위치에 빌드 이펙트 생성 구현
+  - 빌드 이펙트 생성 후 2초가 지나면 킬
+
+5. GameOver 처리
+1) PlayerStats.cs :  lives : 10 초기화
+2) 맵 상단에 lives UI 구성
+3) 종점에 Enemy 들어오면(도착하면) lives 1씩 감소
+4) lives 0이 되면 GameOver
+ - Debug.Log ("GameOver");
+
+
+* 구글 폰트(Roboto) 다운로드
+
+<필요 스킬>
+1. Canvas - Render Mode
+   - Screen Space - Overlay
+   - Screen Space - Camera
+   - World Space
+
+<샘플 씬>
+CanvasTest

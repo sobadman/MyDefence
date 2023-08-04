@@ -1,83 +1,103 @@
 using System.Collections;
-using System.Threading;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-	//터렛의 공격범위, 터렛 사거리
-	public float attackRange = 15.0f;
+    //공격할 대상(적)
+    protected Transform target;
 
-    public string enemyTag = "Enemy";
-
-    float time = 0f;
-    
-    public float checkTime = 0.5f;
-
-    float shootTime = 0f;
-
-    public float shoot = 1.0f;
-
-    public Transform target;
-
+    [Header("Attribute")]
+    //터렛 회전
     public Transform rotatePart;
     public float turnSpeed = 5f;
 
-    public Transform firePoint;
+    //터렛의 공격범위, 터렛 사거리
+    [SerializeField]
+    protected float attackRange = 15.0f;
+
+    //enemy 태그
+    public string enemyTag = "Enemy";
+
+    //Find 타이머
+    public float findTime = 0.5f;
+    protected float countdown = 0f; //Find 타이머 전용 시간 누적 변수
+
+    [Header("Shooting")]
+    //Shoot 타이머
+    public float shootTime = 1.0f;
+    protected float countdownShoot = 0f; //Shoot 타이머 전용 시간 누적 변수
+
+    //탄환 발사
     public GameObject bulletPrefab;
+    public Transform firePoint;
 
-
-    // Start is called before the first frame update
-    void Start()
-	{
-
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
+    // Update is called once per frame
+    protected virtual void Update()
+    {
         //0.5초마다 target을 찾도록 한다
-        time += Time.deltaTime;
-        shootTime += Time.deltaTime;
-        if (time > checkTime)
+        countdown += Time.deltaTime;
+        if(countdown > findTime)        
         {
+            //타이머 실행문
             FindTarget();
-            time = 0;
+            countdown =0f;
         }
-        if(target != null)
+
+        if(target == null)
         {
-            LockOnTarget();
-            if (shootTime >= shoot)
-            {
-                Shoot();
-                shootTime = 0;
-            }
+            return;
         }
-        
+
+        //회전 - 타겟팅 
+        LockOnTarget();        
+
+        //1초마다 1발씩 쏘기
+        countdownShoot += Time.deltaTime;
+        if(countdownShoot > shootTime)
+        {
+            //타이머 실행문
+            Shoot();
+            countdownShoot = 0;
+        }
+    }
+
+    //LockOn
+    protected void LockOnTarget()
+    {
+        Vector3 dir = target.position - this.transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+
+        Quaternion qRotation = Quaternion.Lerp(rotatePart.rotation, lookRotation, Time.deltaTime * turnSpeed);
+
+        Vector3 eRotaion = qRotation.eulerAngles;
+
+        rotatePart.rotation = Quaternion.Euler(0f, eRotaion.y, 0f);
     }
 
     //게임상의 모든 적들을 찾아 가장 가까운 적을 찾는다
-    void FindTarget()
+    protected void FindTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        float distance = 0;
-        float MinValue = float.MaxValue;
-        GameObject nearEnemy = null;
+        
         //가장 가까운 거리 구하기
+        //가장 가까운 거리에 있는 Gameobject(enemy)
+        float minDistance = float.MaxValue;
+        GameObject nearEnemy = null;
+        int enemyPos = -1;
 
-        //가장 가까운 거리에 있는 GameObject enemy 찾기
-
-        for(int i = 0; i < enemies.Length; i++)
+        for (int i = 0; i < enemies.Length; i++)
         {
-            distance = Vector3.Distance(enemies[i].transform.position, this.transform.position);
-            if(distance < MinValue)
+            float distance = Vector3.Distance(this.transform.position, enemies[i].transform.position);
+            if(distance < minDistance)
             {
-                MinValue = distance;
+                minDistance = distance;
                 nearEnemy = enemies[i];
+                enemyPos = i;
             }
-
         }
 
-        if( nearEnemy != null && MinValue < attackRange)
+        if(nearEnemy != null && minDistance < attackRange)
         {
             target = nearEnemy.transform;
         }
@@ -90,31 +110,24 @@ public class Turret : MonoBehaviour
     //터렛이 총알 발사하는 함수 - 1초마다 1발씩 쏘기
     void Shoot()
     {
-        GameObject bulletGo = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        //Debug.Log("Shoot!!!!!!");
+        //탄환을 생성, 탄환에게 타겟을 넘겨준다 - 생성한 오브젝트의 값을 초기화
+        GameObject bulletGo = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Destroy(bulletGo, 3f);
-        
+
         Bullet bullet = bulletGo.GetComponent<Bullet>();
+        if(bullet == null)
+        {
+            //error();
+            Debug.Log("Bullet 컴포넌트가 존재하지 않습니다");
+            return;
+        }
         bullet.SetTarget(target);
     }
 
-    void LockOnTarget()
+    private void OnDrawGizmosSelected()
     {
-        Vector3 dir = target.position - rotatePart.position;
-
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-
-        Quaternion qRotation = Quaternion.Lerp(rotatePart.rotation, lookRotation, Time.deltaTime * turnSpeed);
-
-        Vector3 eRotation = qRotation.eulerAngles;
-
-        rotatePart.rotation = Quaternion.Euler(0f, eRotation.y, 0f);
-    }
-
-	private void OnDrawGizmosSelected()
-	{
         Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(transform.position, attackRange);
-	}
-
-
+        Gizmos.DrawWireSphere(this.transform.position, attackRange);
+    }
 }

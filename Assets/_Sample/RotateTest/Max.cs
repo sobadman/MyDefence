@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Max : MonoBehaviour
@@ -9,14 +8,30 @@ public class Max : MonoBehaviour
     void Start()
     {
         int[] arr = { 4, 2, 1, 3, 5 };
-        Debug.Log($"최대값은 {arr.Max()}입니다");
-        for(int i = 0; i < arr.Length; i++)
+
+        //최대값, 최대값이 있는 위치
+        //최대값의 초기값은 변수가 가질수 있는 가장 작은 값으로 초기화
+        int maxValue = int.MinValue;
+        int maxPos = 0;
+
+        for (int i = 0; i < arr.Length; i++)
         {
-            if (arr[i] == arr.Max())
+            if(arr[i] > maxValue)
             {
-                Debug.Log($"최대값이 {i}번 방에 있습니다");
+                maxValue = arr[i];
+                maxPos = i;
             }
         }
-    }
 
+        Debug.Log($"최대값은 {maxValue}입니다");
+        Debug.Log($"최대값이 {maxPos}번 방에 있습니다");
+    }
 }
+
+/*
+[Q]
+입력 값 int[] arr = { 4, 2, 1, 3, 5 };
+[output]
+최대값은 5입니다
+최대값이 4번 방에 있습니다
+*/

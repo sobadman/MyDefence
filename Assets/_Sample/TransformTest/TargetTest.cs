@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class TargetTest : MonoBehaviour
 {
-    public int a = 10;
+    //ÇÊµå
+    private int a = 10;
+    public int b = 20;
+
     // Start is called before the first frame update
     void Start()
     {

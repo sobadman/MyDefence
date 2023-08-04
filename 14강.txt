@@ -1,0 +1,37 @@
+<오늘의 목표>
+게임오버 UI 구성
+
+<오늘의 과제>
+1. 게임오버 UI 구성하기
+   - GAME OVER
+   - 25 (rounds) - PlayerStats.cs (rounds(wave) : 카운트, UI 연결)
+   - ROUNDS SURVIVED
+  - RETRY, MENU (버튼)
+2. RETRY 버튼 기능 구현하기 - debug.Log("Run Retry");
+   MENU (버튼) - debug.Log("Goto Menu");
+3. 게임오버 UI 활성화 : 게임오버시 조건시
+ - 치트키 "O" 키를 누르면 게임오버 UI 활성화
+4. 게임오버 UI 애니메이션
+
+5. Pause Menu Ui 구성
+  - PAUSE 타이틀 텍스트
+  - Continue, Retry, Menu 버튼
+6. Continue, Retry, Menu 버튼 애니메이션
+7. ESC 키 입력시 Pause 활성화(게임 일단 멈춤), 비활성화(게임다시진행)
+  rpd
+8. Continue, Retry, Menu(Debug.Log) 버튼 기능 구현
+
+<필요 스킬>
+1. GameObject  SetActive()
+2. SceneManager.LoadScene
+3. Time.timeScale
+
+
+
+
+
+
+
+
+
+
