@@ -1,0 +1,21 @@
+<오늘의 목표> - UI - Scroll View
+Level Select 씬 만들기
+
+<오늘의 과제>
+1. Level Select 씬  UI 구성
+1) Title Text : LEVEL SELECT
+2) Level Button : 스크롤 기능 구현
+3) 스크롤 바 구현
+ 
+2. 버튼 기능 구현
+1) 버튼 애니메이션
+2) 버튼 클릭 : 
+   Debug.Log ("Level 1 버튼 클릭");
+   Debug.Log ("Level 2 버튼 클릭");
+2) 씬 이동 구현
+- PlayScene -> Level01 씬 이름 변경
+- Level01 씬 복사 -> Level02 씬 만들기
+
+
+<필요 스킬>
+

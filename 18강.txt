@@ -1,0 +1,28 @@
+<오늘의 목표> - Image  (UI)
+HeathBar 구현하기
+Fade In/Out 효과 구현하기 - 씬 변경시
+
+<오늘의 과제> 
+1. Enemy HeathBar UI 구성 및 기능구현
+
+2. Scene Fader Ui 구성
+- 검정색 이미지 한장.. (FaderImage)
+3. FadeIn, FadeOut 기능 구현 
+- 1초동안 : 페이드인   ( a:1 -> a:0)
+  효과: FaderImage를 검정에서 완전 투명하게 알파값을 조정    
+- 1초동안 : 페이드아웃 (a:0 -> a:1)
+  효과: FaderImage를 투명에서 완전 검정으로 알파값을 조정
+4. 씬 처음 불러올때 FadeIn 구현
+5. 다른 씬으로 이동시 FadeOut 구현 후 LoadScene 으로 이동
+
+
+<필요 스킬>
+1. Image - fillAmount
+
+<샘플>
+1. 스킬버튼 클릭 : 스킬 사용
+2. 스킬 쿨 타임(5초) 작동 : 스킬을 한번 사용하면 5초동안 사용하지 못함
+3. 쿨 타임 동안 버튼 클릭(기능) 안됨
+4. 쿨 타임 동안 fillAmout 로 버튼 이미지 360도 채우기
+5. 쿨 타임이 지나면 버튼 클릭 가능
+

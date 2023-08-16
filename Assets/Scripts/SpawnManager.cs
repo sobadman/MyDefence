@@ -5,28 +5,42 @@ using TMPro;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    //현재 맵상에서 살아있는 적의 숫자
+    public static int enemyAlive = 0;
+
+    //웨이브 데이터(적프리팹, 생산할 숫자, 생산 간격)
+    public Wave[] waves;
+
+    //첫번째, 두번째,...
+    int waveCount = 0;
+
+    //
+    //public GameObject enemyPrefab;
 
     //spawn 타이머
     public float spawnTime = 5f;
     float countdown = 4f;
 
-    //첫번째, 두번째,...
-    int waveCount = 0;
-
     //카운트다운 텍스트 UI
     public TextMeshProUGUI countdownText;
+
+    //
+    public GameManager gameManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        enemyAlive = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //현재 맵상에 적이 존재하면 타이머와 스폰을 막는다
+        if (enemyAlive > 0)
+            return;
+
         //타이머 구현
         countdown += Time.deltaTime;       
         if(countdown >= spawnTime)
@@ -43,21 +57,33 @@ public class SpawnManager : MonoBehaviour
     }
 
     IEnumerator SpawnWave()
-    {
-        waveCount++;
+    {   
         PlayerStats.Rounds++;
-        
-        //Debug.Log($"waveCount: {waveCount}");
 
-        for (int i = 0; i < waveCount; i++)
+        Wave wave = waves[waveCount];
+
+        for (int i = 0; i < wave.count; i++)
         {
-            SpawnEnemy();
-            yield return new WaitForSeconds(0.5f);
+            SpawnEnemy(wave.enemyPrefab);
+            yield return new WaitForSeconds(wave.dealyTime);
+        }
+
+        //마지막 웨이브 검사
+        if (waveCount < waves.Length - 1)
+        {
+            waveCount++;
+        }
+        else
+        {   
+            gameManager.LevelClear();
+            this.enabled = false;
         }
     }
 
-    void SpawnEnemy()
+    void SpawnEnemy(GameObject prefab)
     {
-        Instantiate(enemyPrefab, this.transform.position, Quaternion.identity);
+        Instantiate(prefab, this.transform.position, Quaternion.identity);
+
+        enemyAlive++;
     }
 }

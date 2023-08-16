@@ -1,0 +1,18 @@
+<오늘의 목표>
+Level Clear  UI
+
+<오늘의 과제>
+1. Level Clear Ui 구성 및 기능 구현
+ - LEVEL CLEAR - Title Text
+ - Round 텍스트 - 
+ - 버튼 CONTINUE, MENU
+ - CONTINUE, MENU버튼 기능 구현
+ - UI 활성화
+2. Round 숫자 텍스트 애니메이션 구현(코루틴 활용)
+
+3. bug fix
+
+4. PC 빌드
+
+<필요 스킬>
+

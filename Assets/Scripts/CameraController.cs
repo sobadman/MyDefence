@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.IsGameOver == true)
+        if (GameManager.IsGameOver || GameManager.isReady)
             return;
 
         // esc key를 한번 누르면, esc key를 다시 한번 누르면 : 이동가능 <-> 불가능 - 토글기능

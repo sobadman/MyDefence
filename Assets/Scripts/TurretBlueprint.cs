@@ -11,5 +11,10 @@ public class TurretBlueprint
     public int upgradeCost;          //업그레이드 가격
 
     public Vector3 offset;          //터렛 설치 위치 오프셋
-    //......
+    
+    public int GetSellCost()
+    {
+        return cost / 2;
+    }
+
 }

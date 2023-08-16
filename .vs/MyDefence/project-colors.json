@@ -10,7 +10,12 @@
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "기타 파일",
       "ColorIndex": -1
+    },
+    "4810715d-d5e4-8a6b-9487-70decc47442d": {
+      "ProjectGuid": "4810715d-d5e4-8a6b-9487-70decc47442d",
+      "DisplayName": "UnityEngine.UI",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }

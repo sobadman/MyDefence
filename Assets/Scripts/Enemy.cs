@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
@@ -9,6 +10,9 @@ public class Enemy : MonoBehaviour, IDamageable
     //체력 초기값
     [SerializeField]
     private float startHealth = 100f;
+
+    //체력bar 이미지
+    public Image healthBarImage;
 
     //보상금
     [SerializeField]
@@ -38,6 +42,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
         //enemy 초기화
         health = startHealth;
+        healthBarImage.fillAmount = 1f;
+
         speed = startSpeed;
     }
 
@@ -92,6 +98,9 @@ public class Enemy : MonoBehaviour, IDamageable
             //Debug.Log("종점 도착");
             PlayerStats.UseLives(1);
 
+            //적의 갯수 카운팅
+            SpawnManager.enemyAlive--;
+
             Destroy(this.gameObject);//킬
             return;
         }
@@ -104,15 +113,17 @@ public class Enemy : MonoBehaviour, IDamageable
     public void SlowMove(float rate)
     {
         speed = startSpeed * (1-rate); // 10 * (1-0.3) = 10 * (0.7) 10 *(0.7)   10*(0.7)
-        Debug.Log($"enemy speed : " + speed);
+        //Debug.Log($"enemy speed : " + speed);
     }
 
     public void TakeDamage(float damage)
     {
         health -= damage;
-        //Debug.Log($"Health: {health}");
 
-        if(health <= 0)
+        //UI 연산
+        healthBarImage.fillAmount = health / startHealth;
+
+        if (health <= 0)
         {
             Die();
         }
@@ -126,6 +137,9 @@ public class Enemy : MonoBehaviour, IDamageable
         //죽는 이펙트 처리
         GameObject eff = Instantiate(deathEffectPrefab, this.transform.position, Quaternion.identity);
         Destroy(eff, 2f);
+
+        //적의 갯수 카운팅
+        SpawnManager.enemyAlive--;
 
         Destroy(this.gameObject);
     }

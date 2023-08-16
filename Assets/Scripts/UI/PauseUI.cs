@@ -3,13 +3,21 @@ using UnityEngine.SceneManagement;
 
 public class PauseUI : MonoBehaviour
 {
+    //Fader
+    public SceneFader fader;
+    [SerializeField]
+    private string loadToScene = "MainMenu";
+
     //PauseUI
     public GameObject pauseUI;
 
     private void Update()
     {
+        if (GameManager.IsGameOver || GameManager.isReady)
+            return;
+
         //PauseUI 게임오브젝트 활성화,비활성화
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Toggle();
         }
@@ -36,14 +44,15 @@ public class PauseUI : MonoBehaviour
 
     public void Retry()
     {
-        Debug.Log("Retry Play!!!");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
+        fader.FadeTo(SceneManager.GetActiveScene().name);
     }
 
     public void Menu()
     {
-        Debug.Log("Goto Menu!!!");
+        //페이드 아웃하고 로드씬
+        fader.FadeTo(loadToScene);
+        Time.timeScale = 1f;
     }
 
 }

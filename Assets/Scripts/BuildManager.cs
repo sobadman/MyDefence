@@ -61,7 +61,7 @@ public class BuildManager : MonoBehaviour
     }
 
     //맵 타일 선택 해제
-    void DeSelectTile()
+    public void DeSelectTile()
     {
         tileUI.HideTileUI();
         selectTile = null;

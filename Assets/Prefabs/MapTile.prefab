@@ -123,3 +123,4 @@ MonoBehaviour:
   moneyMaterial: {fileID: 2100000, guid: 6f6291d5d2855ac41b5e8d47d83b2cf6, type: 2}
   offsetPos: {x: 0, y: 0.5, z: 0}
   buildEffectPrefab: {fileID: 9131683503258731207, guid: 164bb62268455024393fa81d2c442cf0, type: 3}
+  sellEffectPrefab: {fileID: 9131683503258731207, guid: 08ab396fc1592b6469d99b3142aeac08, type: 3}
